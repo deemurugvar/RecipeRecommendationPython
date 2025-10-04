@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">🍽️ Recipe Recommender</h1>
+    
+    <form action="/recommend" method="post" class="mt-4">
+        <div class="mb-3">
+            <label for="ingredients" class="form-label">Enter Ingredients (comma-separated):</label>
+            <input type="text" class="form-control" name="ingredients" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="num_recipes" class="form-label">Number of Recipes:</label>
+            <input type="number" class="form-control" name="num_recipes" min="1" value="5">
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Get Recommendations</button>
+    </form>
+
+    {% if recipes %}
+    <h2 class="mt-5">Recommended Recipes:</h2>
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Ingredients</th>
+                <th>Instructions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for recipe in recipes %}
+            <tr>
+                <td>{{ recipe.Title }}</td>
+                <td>{{ recipe.Ingredients }}</td>
+                <td>{{ recipe.Instructions }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+{% endblock %}

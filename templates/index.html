@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="text-center mt-5">
+    <h1>Welcome to Recipe Recommender</h1>
+    <p class="lead">Discover delicious recipes based on the ingredients you have.</p>
+    {% if not current_user.is_authenticated %}
+        <a href="/login" class="btn btn-primary">Login to Get Started</a>
+    {% endif %}
+</div>
+{% endblock %}
